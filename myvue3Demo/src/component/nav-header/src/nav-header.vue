@@ -9,7 +9,7 @@
         <Breadcrumb :breadcrumbs="breadcrumbs" />
       </div>
       <div class="user">
-        <el-avatar class="user-head" :size="50" src="../../../../src/assets/img/t9.jpg" />
+        <span>欢迎你，</span>
         <el-dropdown class="drop">
     <span class="el-dropdown-link">
       {{ LoginStore.userInfo.name }}
