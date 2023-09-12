@@ -3,7 +3,9 @@
     <PageSearch :searchFormConfig="roleSearchFormConfig"
                 @resetClick="handleResetClick"
                 @queryClick="handleQueryClick"/>
-    <PageContent ref="contentRef" :contentConfig="roleContentConfig">
+    <PageContent ref="contentRef" :contentConfig="roleContentConfig"
+                 @editBtnClick="handleModelEdit"
+                 @createBtnClick="handleModelCreate">
       <template #menuList="scope">
         <template v-if="scope.row.menuList.length > 0" >
           <el-button
@@ -24,6 +26,10 @@
         </template>
       </template>
     </PageContent>
+    <PageModal
+        :defaultFormData="defaultFormData"
+        :modalConfig="roleModelConfig"
+        ref="pageModal"/>
   </div>
 </template>
 
@@ -33,8 +39,13 @@ import PageSearch from "../../../../component/page-search";
 import {roleContentConfig} from "./config/roleContentConfig";
 import PageContent from "../../../../component/page-content";
 import {usePageSearch} from "../../../../hooks/usePageSearch";
+import {roleModelConfig} from "./config/roleModalConfig";
+import PageModal from "../../../../component/page-modal/src/page-modal.vue";
+import {usePageModal} from "../../../../hooks/usePageModal";
 
 const { contentRef, handleResetClick, handleQueryClick } = usePageSearch()
+const {pageModal, handleModelCreate, handleModelEdit, defaultFormData} = usePageModal()
+
 </script>
 
 <style scoped lang="scss">

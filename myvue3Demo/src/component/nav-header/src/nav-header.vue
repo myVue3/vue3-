@@ -19,7 +19,7 @@
     </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+              <el-dropdown-item @click="handleExitLogin">退出登录</el-dropdown-item>
               <hr>
               <el-dropdown-item>个人中心</el-dropdown-item>
               <el-dropdown-item>我的收藏</el-dropdown-item>
@@ -40,8 +40,11 @@ import Breadcrumb from "../../../base-ui/breadcrumd/breadcrumb.vue";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 import {getBreadcrumb} from "../../../utils/mapMeunToRoutes.js";
+import {messageBoxOpen} from "../../../global/global-elements";
+import cache from "../../../utils/cache";
+import {useRouter} from "vue-router";
 
-
+const router = useRouter()
 const LoginStore = useLoginStore()
 //路由发生变化的时候改变传递给面包屑传递组件的参数
 const breadcrumbs = computed(() => {
@@ -50,7 +53,16 @@ const breadcrumbs = computed(() => {
   const path = route.path
   return getBreadcrumb(userMenu,path)
 })
-
+const handleExitLogin = () => {
+  messageBoxOpen('确定要退出吗？','warning',() => {
+    let name = cache.getCache('name')
+    cache.clearCache()
+    cache.setCache('name',name)
+    LoginStore.isChecked = false
+    router.push('/login')
+    open('退出成功',"success")
+  })
+}
 
 </script>
 

@@ -41,11 +41,12 @@ import {usePageModal} from "../../../../hooks/usePageModal";
 import {computed} from "vue";
 const rootStore = useRootStore()
 const editCallBack = () => {
-//在编辑的时候不显示编辑 密码
+//在编辑的时候不显示编辑密码或者其他属性
   const passwordItem = userModelConfig.formItem.find((item) => item.field === 'password')
   passwordItem.isHidden = true
 
 }
+//在新建的时候显示密码或其他属性
 const createCallBack = () => {
   const passwordItem = userModelConfig.formItem.find((item) => item.field === 'password')
   passwordItem.isHidden = false
