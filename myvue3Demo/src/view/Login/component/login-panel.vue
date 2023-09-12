@@ -1,6 +1,6 @@
 <template>
   <div class="login-panel">
-    <h1 class="title">欢迎登陆</h1>
+    <h1 class="title">欢迎登陆111</h1>
     <el-tabs class="demo-tabs" stretch @tab-click="tabClick">
       <el-tab-pane>
         <template #label>
